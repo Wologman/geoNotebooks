@@ -1,10 +1,10 @@
 # Geospatial analysis with Jypyter Notebooks and QGIS
-My goal for this project is to bring together the strengths of two different approaches to working with Geospatial data: 
+My goal for this project is to bring together the strengths of two  approaches to working with Geospatial data: 
 - **QGIS** | An awesome open-source GIS package with a Python API
-- **Jupyter Notebooks** | To explore and visualise data in Python with a sequential workflow
+- **Jupyter Notebooks** | A great way to explore and visualise data sequentially in Python
 
 ## Introduction
-Let's consider the strengths of each approach, that when brought together, give advantages one or the other misses.
+Let's consider the strengths of each approach, that when brought together, create advantages one or the other misses.
 
 ### Advantages from QGIS
 - Makes beautiful maps
@@ -14,10 +14,11 @@ Let's consider the strengths of each approach, that when brought together, give 
 ### Advantages from Jupyter (with Conda)
 - Reproducibility
 - The entire workflow and any mathematical or logical arguments are preserved step by step.
-- Statistical and mathematical results can be plotted nicely with dedicated plotting libraries for later publication or presentation.
+- Statistical results can be plotted nicely with dedicated plotting libraries for later publication or presentation.
+- Mathematical and logical arguments can be presented with the combined presentability of Markdown and LaTeX.
 - The whole notebook can be converted to interactive `html` files, and the code can even be hidden for non-technical audiences.
 - Works with any version of Python, or any third party libraries, including machine learning libraries and frameworks such as PyTorch or Tensorflow
-- Version control of those third party libraries and Python version
+- Version control of those third party libraries and Python version, as well as integration with Git from your code editor.
 - Multi-core CPU processing (in Linux only)
 - GPU processing
 - Can work directly with rasters as NumPy arrays for speed and memory efficiency
@@ -29,13 +30,13 @@ Since both these lists have some substantial benefits, this seems like quite a w
 The reproducibility and logic to the workflows are such key concepts here, this is a great way to learn to work with spatial data, even if it is a little slower to begin with.
 
 **For specialist science roles**  
-For example monitoring biodiversity, erosion, land-use change etc.  This approach could make working with spatial data faster, more presentable and more repeatable. Especially for those types of projects that may get repeated a few times in similar ways. 
+For example monitoring biodiversity, erosion, land-use change etc.  This approach could make working with spatial data faster, more presentable and more repeatable. Especially for those types of projects that may get repeated a few times in similar ways. If a dataset needs updatating every year, and all the package versions are nicely locked down, the code should keep running smoothly.
 
 **For Spatial Data Scientists & Machine Learning specialists**  
-Or really for anybody who is providing that next level of Python & Spatial Data expertise to subject specialists.  So this would cover data exploration, data cleaning,  posssibly even feature engineering.  Also lifting the standard of visualisation for our final models after making predictions.
+Or really for anybody who is providing that next level of Python & spatial data expertise to the subject specialists mentioned above.  This would cover data exploration, data cleaning, posssibly even feature engineering.  Also lifting the presentability of visualisation of our for our final models.
 
-**For development of spatial tools and QGIS plugins**  
-Although it may be simpler to work directly from `.py` scripts for this, working initially in notebooks is convenient way to do initial prototyping, visualise outcomes and troubleshoot our ideas as we go along.
+**For software engineers for spatial tools and QGIS plugin development**  
+Working initially in notebooks can be a convenient way to do initial prototyping, visualise outcomes and troubleshoot our ideas as we go along.  Once that phase is over, everything can be moved into .py scripts.
 
 ## Setup
 
@@ -49,6 +50,7 @@ Although it may be simpler to work directly from `.py` scripts for this, working
 conda update -n base conda
 conda install -n base conda-libmamba-solver
 conda config --set solver libmamba
+conda config --set auto_activate_base False #optional but I think it's best because you never really want to use base for much.
 ```
 
 ### Setup a Python Environment with Conda
@@ -96,13 +98,14 @@ If this worked there should be a new file `qgis.sources` located in `/etc/apt/so
 `sudo apt update`  
 `sudo apt install qgis qgis-plugin-grass`  
 
-## Conda Environment setup
+# Load environment variables from .env file
 
+```bash
 from dotenv import load_dotenv
 import os
 import sys
 
-# Load environment variables from .env file
+
 load_dotenv()
 
 # Modify sys.path based on PYTHONPATH
@@ -125,7 +128,7 @@ except ImportError as e:
 
 # Your processing code here
 
-
+```
 
 
 
