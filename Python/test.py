@@ -1,6 +1,16 @@
 import os, sys
 from dotenv import load_dotenv
 
+
+#CURRENTLY THE WAY TO SET THIS TEMPORARILY FIRST IS    export $LD_LIBRARY_PATH=/usr/lib    
+# in the terminal BEFORE RUNNING THE CODE.  But it still doesn't fix the import problems below
+
+ld_library_path = os.environ.get('LD_LIBRARY_PATH', '')
+
+# Print the value
+print(f'LD_LIBRARY_PATH: {ld_library_path}')
+
+
 #This is isn't the Pythonic way, and it doesn't help our editor recognise the extra packages for syntax assistance
 #The VSCode way to do this is to create a settings.json for the editing with the extra paths
 #and also a launch.json to launch the script uising for the extra paths.  Both sit under the project workspace for transparency.
@@ -14,13 +24,17 @@ print('PYTHONPATH:', os.environ['PYTHONPATH'])
 
 
 #extra_paths = ['/usr/share/qgis/python/plugins/','/usr/share/qgis/python/', '/usr/lib/python3/dist-packages/']
+
+
+
 #This is from sys.path inside qgis console:
-extra_paths = ['/usr/share/qgis/python', 
+extra_paths = ['usr/share',
+               '/usr/share/qgis/python', 
                '/home/olly/.local/share/QGIS/QGIS3/profiles/default/python', 
                '/home/olly/.local/share/QGIS/QGIS3/profiles/default/python/plugins', 
                '/usr/share/qgis/python/plugins', 
-               #'/usr/lib/python310.zip', 
-               #'/usr/lib/python3.10', 
+               #'/usr/lib/python310.zip', ModuleNotFoundError: No module named 'qgis._gui'
+               '/usr/lib/python3.10', 
                '/usr/lib/python3.10/lib-dynload', 
                '/usr/local/lib/python3.10/dist-packages', 
                '/usr/lib/python3/dist-packages', 
@@ -37,8 +51,8 @@ for path in extra_paths:
         print(f'Appending {path} to sys.path')
 print('sys.path:', sys.path)
 
-import qgis   #note- this one comes from the conda environment, not from the sys paths
-from qgis.gui import *
+import qgis   #seems to be the wrong qgis directory,  #Or should this come from the conda env?  But that could be the source of the missing dynamic links?
+from qgis.gui import *     #ModuleNotFoundError: No module named 'qgis._gui'   with no conda qgis
 from qgis.core import *
 from qgis.utils import plugins
 from PyQt5.QtCore import *
@@ -49,6 +63,7 @@ app = QgsApplication([], False)
 app.initQgis()
 
 #import processing             #something is wrong
+
 import qgis.analysis           #also not there     
 
 # ImportError: libgsl.so.25: cannot open shared object file: No such file or directory
@@ -56,14 +71,19 @@ import qgis.analysis           #also not there
 # http://geospatialdesktop.com/2009/02/creating_a_standalone_gis_application_1/
 # "If there are any errors you may have to set the path to the QGIS libraries using the LD_LIBRARY_PATH on OS X and Linux"
 # Also discussed in the developer cookbook:
-# https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#running-custom-applications
+# https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/intro.html#running-custom-applications    #This gives the explanation, but the solution doesn't work.
 # so I think I'm onto something here  need to keep digging.
+
+
+#The current problem seems to be that the Conda qgis version points to the wrong things, hence even with the right paths setup, I get this libgsl.so.25  not found error
+
 
 
 '''
 #from qgis import processing  #This works but doesn't seem to load the module I'm looking for
 #import processing  #This doesn't
 #from processing.core import Processing  #This doesn't
+#from processing.core.Processing import Processing
 #Processing.initialize()
 
 
