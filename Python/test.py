@@ -19,13 +19,7 @@ print(f'LD_LIBRARY_PATH: {ld_library_path}')
 #load_dotenv()
 
 #print('PYTHONPATH:', os.environ['PYTHONPATH'])
-
-
-
-
 #extra_paths = ['/usr/share/qgis/python/plugins/','/usr/share/qgis/python/', '/usr/lib/python3/dist-packages/']
-
-
 
 #This is from sys.path inside qgis console:
 extra_paths = [#'usr/share',
@@ -50,7 +44,7 @@ for path in extra_paths:
         print(f'Appending {path} to sys.path')
 print('sys.path:', sys.path)
 
-import qgis                 #Only works with the same interpreter as qgis its self.
+import qgis                 #Only works with the same interpreter as qgis its self.  So QGIS is putting useful links in with this interpreter somehow?
 from qgis.gui import *      #ModuleNotFoundError: No module named 'qgis._gui'   when using the interpreter from Conda
 from qgis.core import *
 from qgis.utils import plugins
@@ -60,10 +54,8 @@ from PyQt5.QtCore import *
 
 QgsApplication.setPrefixPath('/usr', True)
 app = QgsApplication([], False)
-#app.initQgis()                #something is wrong
-#import processing             #something is wrong
-
-   
+app.initQgis()                
+ 
 
 # ImportError: libgsl.so.25: cannot open shared object file: No such file or directory
 # Goes wrong from here,  likely connected to this comment from here 
@@ -80,24 +72,18 @@ app = QgsApplication([], False)
 # ideally also use the interpreter from Conda?  This shouldn't really matter if it is the same version.  Maybe better to use the QGIS default interpreter.
 
 
+QgsApplication.processingRegistry().addProvider(QgsNativeAlgorithms())
+for alg in QgsApplication.processingRegistry().algorithms():
+        print(alg.id(), "--->", alg.displayName())
+
+
+from qgis import processing
+
+from processing.core import Processing
+
 
 '''
-#from qgis import processing  #This works but doesn't seem to load the module I'm looking for
-#import processing  #This doesn't
-#from processing.core import Processing  #This doesn't
-#from processing.core.Processing import Processing
-#Processing.initialize()
-
-
-
-
-
-
-
-#QgsApplication.processingRegistry().addProvider(QgsNativeAlgorithms())
-#for alg in QgsApplication.processingRegistry().algorithms():
-#        print(alg.id(), "--->", alg.displayName())
-
+Processing.initialize()
 ### Do some processing  ###
 #input_layer = QgsVectorLayer('/path/to/your/shapefile.shp', 'input_layer', 'ogr')
 #buffer_output = '/path/to/output/buffer.shp'
@@ -107,7 +93,7 @@ app = QgsApplication([], False)
 #    'DISTANCE': 100,
 #    'OUTPUT': buffer_output
 #})
-
-#app.exitQgis()
-#app.exit()
 '''
+
+app.exitQgis()
+app.exit()
