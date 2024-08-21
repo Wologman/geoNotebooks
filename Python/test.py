@@ -1,37 +1,25 @@
-import os, sys
-#from dotenv import load_dotenv
-
+import os, sys, time
 
 #CURRENTLY THE WAY TO SET DYNAMIC LINKS TEMPORARILY FIRST IS    export $LD_LIBRARY_PATH=/usr/lib    
-#The developer cookbook says we need to do this, but I'm not getting any import errorys, so maybe not
+#The developer cookbook says we need to do this, but I'm not getting any import errors, so maybe not
+#Or maybe this is needed if I want to use a different python interpreter
+
 ld_library_path = os.environ.get('LD_LIBRARY_PATH', '') #Will be empty if the above step not done
 
-# Print the value
-print(f'LD_LIBRARY_PATH: {ld_library_path}')
-
-
-#load_dotenv()
-
+#print(f'LD_LIBRARY_PATH: {ld_library_path}')
 #print('PYTHONPATH:', os.environ['PYTHONPATH'])
-#extra_paths = ['/usr/share/qgis/python/plugins/','/usr/share/qgis/python/', '/usr/lib/python3/dist-packages/']
+#print(sys.executable)  in qgis console I get:    '/usr/bin/python3'  The imports work as expected if I switch from my coda enironment to this interpreter.
 
+#Now to set the PYTHONPATH
 #This is from sys.path inside qgis console:
-extra_paths = [#'usr/share',
-               '/usr/share/qgis/python', 
+extra_paths = ['/usr/share/qgis/python', 
                '/home/olly/.local/share/QGIS/QGIS3/profiles/default/python', 
                '/home/olly/.local/share/QGIS/QGIS3/profiles/default/python/plugins', 
                '/usr/share/qgis/python/plugins', 
-               #'/usr/lib/python310.zip', ModuleNotFoundError: No module named 'qgis._gui'
                '/usr/lib/python3.10',
                '/usr/lib/python3/dist-packages', 
                '/home/olly/.local/share/QGIS/QGIS3/profiles/default/python']
 
-#print(sys.executable)  in qgis console I get:    '/usr/bin/python3'    The imports work as expected if I switch from my coda enironment to this interpreter.
-
-#print('PYTHONPATH:', os.environ['PYTHONPATH'])
-#for path in os.environ['PYTHONPATH'].split(':'):    #not sure why this doesn't work
-
-#This approach works to set sys.path,  not sure why the other one doesn't yet.  Revisit this later
 for path in extra_paths:
     if path not in sys.path:
         sys.path.append(path)
@@ -42,7 +30,8 @@ print('sys.path:', sys.path)
 #This is isn't the Pythonic way, and it doesn't help our editor recognise the extra packages for syntax assistance
 #The VSCode way to do this is to create a settings.json for the editing with the extra paths
 #and also a launch.json to launch the script uising for the extra paths.  Both sit under the project workspace for transparency.
-#PyCharm and presumably Spyder would directly recognise the .env and add the relevant paths, so best to include a .env file too.
+#Actually, better still would be to store all this in the .env file, then change settings.json and launch.json to refer to that.
+#PyCharm and presumably Spyder would directly recognise the .env and add the relevant paths.  I should check this.
 
 
 import qgis  #Only works with the same interpreter as qgis its self. So QGIS is putting useful links in with this interpreter somehow?
@@ -54,7 +43,7 @@ from PyQt5.QtCore import *
  
 
 QgsApplication.setPrefixPath('/usr', True)
-app = QgsApplication([], True)
+app = QgsApplication([], False)
 app.initQgis()                
  
 #To create and work with a project
@@ -88,7 +77,13 @@ app.exit()
 #app.exitQgis()   #Segmentation fault (core dumped) #Happens if I have opened a layer.  
 #The develeper cookbook doesn't discuss this.
 #app = QgsApplication([], False) a #Segmentation fault (core dumped)  #Same problem
+#I suspect this has something to do with multi core or multi threadeded processing.
 
-second_app = QgsApplication([], False)   #This is OK
+
+#Second Example. - Custom application
+second_app = QgsApplication([], True)   #This is OK, but I wonder why it doesn't open the gui
 second_app.initQgis()
-second_app.exit()           
+#This is how to make a qgis 'custom application', with it's own custom gui. 
+# https://docs.qgis.org/3.34/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications 
+#To do this we still need to construct the gui. But this could be really useful at DOC.
+second_app.exit()
