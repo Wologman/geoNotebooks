@@ -4,6 +4,6 @@
  
 - I find this to be a really useful way to work and I hope to make it into a training course eventually.
  
-- My background is in maths and physics, but I work a lot with ecologists, it's an interesting mix.  The general philosophy here is to find ways I can merge reproducable science with advanced computational methods. 
+- My education included a lot of maths and physics, but I work a lot with ecologists.  It's an interesting mix.  The general philosophy here is to find ways I can merge reproducable science with advanced computational methods. 
 
 - Currently trying to figure out a clean and easy way to deal with the setup on Linux and Windows.
