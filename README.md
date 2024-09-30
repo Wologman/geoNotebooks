@@ -4,6 +4,8 @@
  
 - I find the Conda-Jupyter combination really useful for initial data exploration & process development, even if I might drop it in later stages of a project.
  
-- I work with ecologists, but my expertise is mostly in maths, physics & engineering.  The general theme here is to make myself useful to science subject specialists, by enabling advanced computational, sensing & measurement methods. 
+- The general theme here is to make myself useful to science subject specialists, by enabling advanced computational, sensing & measurement methods.
+  
+- A bit more specifically, I'm looking for systematic ways to make statistical spatial models from the large volumes of probabilistic data that these new sensing & remote sensing methods create in problems like wildlife and ecosystem monitoring.
 
-- Currently still trying to figure out a clean and easy way to deal with the setup for the QGIS-Conda-Jupyter combination on Linux and Windows, that's sufficiently IDE agnostic.
+- Currently still just trying to figure out a clean and easy way to deal with the setup for the QGIS-Conda-Jupyter combination on Linux and Windows, that's sufficiently IDE agnostic.
