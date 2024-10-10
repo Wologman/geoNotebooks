@@ -8,4 +8,4 @@
   
 - A bit more specifically, I'm looking for systematic ways to make statistical spatial models from the large volumes of probabilistic data that these new sensing & remote sensing methods create in problems like wildlife and ecosystem monitoring.
 
-- This is a non-trivial thing, because essentially I'm working with two rival package managers, so lots of potential for conflict, & using Conda packages in combination with a seperate .env file.
+- This is a non-trivial thing, because essentially I'm working with two rival package managers, so lots of potential for conflict.  Also I'm using Conda packages in combination with a seperate .env file, which is a bit confusing to VSCode.
