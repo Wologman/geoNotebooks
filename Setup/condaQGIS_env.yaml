@@ -1,4 +1,4 @@
-# Usage: conda env create -f geoExploreQGIS_env.yaml
+# Usage: conda env create -f condaQGIS_env.yaml
 
 name: condaQGIS
 channels:
@@ -7,56 +7,50 @@ channels:
   - menpo
   - defaults
 dependencies:
-  - python==3.12.3 #QGIS currently using 3.12.3 (The system default for my version of Ubuntu)
+  - python==3.12.3  # QGIS currently using 3.12.3 (The system default for my version of Ubuntu)
+  - gdal==3.8.4     # Deliberately using the same version as QGIS
+  - libtiff==4.6.1  # This is shared between conda and QGIS dependencies
+  - rasterio        # Requires libtiff version 4.6.1 to match qgis
+  - rasterstats     # Requires libtiff version 4.6.1 to match qgis
+  - contextily      # Requires libtiff version 4.6.1 to match qgis
+  - matplotlib      # QGIS uses 3.6.3, which conflicts with Python 3.12.3
   - numpy==1.26.4
   - pyproj==3.6.1
-  - matplotlib  #==3.6.3 #this conflicts with  3.12.3, it is available through QGIS
-  - scipy  #==1.11.4
-  - ipython  #==8.28.0
-  - jupyter  #==1.1.1
-  - joblib  #==1.4.2
-  - scikit-learn  #==1.5.2
-  - seaborn  #==0.13.2
+  - qgis  
+  - scipy
+  - ipython
+  - jupyter
+  - joblib
+  - scikit-learn
+  - seaborn
   - plotly
   - plotly_express
-  - python-dotenv  #==1.0.1
+  - python-dotenv
   #- polars #conflicts with Python 3.12.3
-  - pandas  #==2.2.3
-  - geopandas  #==1.0.1
-  - shapely  #==2.0.6
-  - rasterio  #==1.4.1
-  - rasterstats  #==0.20.0
-  - cartopy  #==0.24.0
-  - contextily  #==1.6.2
-  - geoplot  #==0.5.1
-  - ipyleaflet  #==0.19.2
-  - folium  #==0.17.0
-  - pillow  #==10.4.0
-  - geoviews  #==1.13.0
-  - opencv  #==4.10.0
-  - fastparquet  #==2024.5.0
-  - pyarrow  #==17.0.0
-  - pyyaml  #==6.0.2
-  - piexif  #==1.1.3
-  - xmltodict  #==0.14.0
-  - pip  #==24.2
+  - pandas
+  - geopandas
+  - shapely
+  - cartopy
+  - geoplot
+  - ipyleaflet
+  - folium
+  - pillow
+  - geoviews
+  - opencv
+  - fastparquet
+  - pyarrow
+  - pyyaml
+  - piexif
+  - xmltodict
+  - pip
   - pip:
-    #- matplotlib==3.6.3
+    #- some crazy package only availabl on pip
       
-
-# TorchGeo
+# TorchGeo extra packages
 #  - pytorch-lightning=2.0.6
-#  - torchvision=0.16   #=0.15.2
+#  - torchvision=0.16
 #  - timm=0.9.7 
-#  - plotly=5.15.0
-#  - plotly_express=0.4.1
-#  - scipy=1.11.1
-#  - scikit-learn=1.3.0
 #  - scikit-image=0.21.0
 #  - seaborn=0.12.2
 #  - albumentations=1.3.1
-#  - opencv=4.8.0
 #  - python-kaleido=0.2.1
-#  - fastparquet=2023.7.0
-#  - pyarrow=12.0.1
-#  - pyyaml=6.0
