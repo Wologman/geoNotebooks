@@ -22,7 +22,8 @@ To make this work:
     (2)  LD_LIBRARY_PATH from both QGIS and Conda need to be added to LD_LIBRARY_PATH
     (3)  We also need to add any extra paths for our Conda environment to PYTHONPATH, but without actually activating it
     (4)  The interpreter path for the environmnet must be the same one that QGIS uses
-    (5)  Where there is overlap between conda and QGIS dependencies, try to force the same version for Conda both (eg python its self)
+    (5)  Where there is overlap between conda and QGIS dependencies, they need and they involve C libraries they need to match. eg. libtiff
+    (6)  Some mysterious unresolved problem with seaborn and ipyleaflet to do with lists.
 
 To run in from terminal, go to the folder holding the scripts and the .env, then:
     source .env                             (Setus up all the paths and stores in environment variables)
@@ -39,7 +40,8 @@ from qgis.utils import plugins
 from qgis.analysis import QgsNativeAlgorithms 
 from PyQt5.QtCore import *
 
-#conda imports
+#Conda imports
+from osgeo import gdal
 import cv2
 import piexif 
 import matplotlib
@@ -58,14 +60,13 @@ import arrow
 import yaml
 import fastparquet
 import xmltodict
+import rasterio    
+import rasterstats
+import contextily
 
 #Troublemakers:
-#import ipyleaflet   # TypeError: type 'List' is not subscriptable 
-#import rasterio   `LIBTIFF_4.6.1' not found
-#import rasterstats  `LIBTIFF_4.6.1' not found
-#import contextily  # version `LIBTIFF_4.6.1' not found 
-#import seaborn  # TypeError: type 'List' is not subscriptable  #This could be an issue with using python 3.12
-
+#import ipyleaflet   # In Ubuntu 24: TypeError: type 'List' is not subscriptable
+#import seaborn      # In Ubuntu 24: TypeError: type 'List' is not subscriptable
 
 #QGIS
 QgsApplication.setPrefixPath('/usr', True)
@@ -98,11 +99,6 @@ processing.run("native:buffer", {
 })
 
 app.exit()
-
-#app.exitQgis()   #Segmentation fault (core dumped) #Happens if I have opened a layer.  
-#The develeper cookbook doesn't discuss this.
-#app = QgsApplication([], False) a #Segmentation fault (core dumped)  #Same problem
-#I suspect this has something to do with multi core or multi threadeded processing.
 
 
 #Second Example. - Custom application
