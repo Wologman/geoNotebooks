@@ -1,8 +1,6 @@
-#To run from terminal, using the environment file:  export $(grep -v '^#' .env | xargs) && python3 test.py
-import sys
-print(sys.executable)
-
-import os, sys, time
+#To run from terminal, using the environment file:  
+# export $(grep -v '^#' .env | xargs) && python3 test.py
+#Or better, just: source ./Python/.env    then after that   $PYTHON_INTERPRETER test.py
 
 '''
 This is from sys.path inside qgis console:
@@ -32,6 +30,8 @@ To run in from terminal, go to the folder holding the scripts and the .env, then
 To make this work in a fancy IDE:
     - The IDE settings need to recognise steps (1),(2),(3),(4) for linting, debugging, launch.  
     - In VSCode, those are all seperate things, and you can't just set the conda environment like normal, or it over-rides the .env
+    - Also in VSCode, to run in the integrated terminal from the play button, the settings file can not reference the .env
+    - Best option is to create a little shell script to source the .env each time a terminal is made.
 '''
 
 from qgis.gui import *
@@ -41,6 +41,7 @@ from qgis.analysis import QgsNativeAlgorithms
 from PyQt5.QtCore import *
 
 #Conda imports
+
 from osgeo import gdal
 import cv2
 import piexif 
@@ -71,7 +72,7 @@ import contextily
 #QGIS
 QgsApplication.setPrefixPath('/usr', True)
 app = QgsApplication([], False)
-app.initQgis()                
+app.initQgis()             
 
 project = QgsProject.instance()
 project.read('testdata/01_project.qgs')
@@ -83,14 +84,14 @@ project.write('testdata/my_new_qgis_project.qgs')
 
 QgsApplication.processingRegistry().addProvider(QgsNativeAlgorithms())
 for alg in QgsApplication.processingRegistry().algorithms():
-       print(alg.id(), "--->", alg.displayName())
+    print(alg.id(), "--->", alg.displayName())
 
 #Do something with the processing module
 from processing.core.Processing import processing
 
 shapefile_path = '/media/olly/Blue Samsung SSD/Documents/GIS/Notebooks/Data/kx-doc-huts-SHP/doc-huts.shp'
-input_layer = QgsVectorLayer(shapefile_path, 'input_layer', 'ogr')  
-buffer_output_path = '/home/olly/Desktop/temp_stuff/buffer.shp'
+input_layer = QgsVectorLayer(shapefile_path, 'input_layer', 'ogr')
+buffer_output_path = "F:/Documents/GIS/Notebooks/Results/buffer.shp"
 
 processing.run("native:buffer", {
     'INPUT': input_layer,
@@ -100,7 +101,6 @@ processing.run("native:buffer", {
 
 app.exit()
 
-
 #Second Example. - Custom application
 second_app = QgsApplication([], True)   #This is OK, but I wonder why it doesn't open the gui
 second_app.initQgis()
@@ -108,5 +108,6 @@ second_app.initQgis()
 # https://docs.qgis.org/3.34/en/docs/pyqgis_developer_cookbook/intro.html#using-pyqgis-in-custom-applications 
 #To do this we still need to construct the gui. But this could be really useful at DOC.
 second_app.exit()
+
 
 print('\033[1m' + '\033[94m' + "Awesome, success, God damn it Gump you're goddamn genius" + '\033[0m')
