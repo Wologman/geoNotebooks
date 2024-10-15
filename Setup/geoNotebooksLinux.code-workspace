@@ -1,0 +1,19 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "python.analysis.extraPaths": ["/home/olly/miniconda3/envs/condaQGIS/lib/python3.11/site-packages","/usr/lib/python3/dist-packages/","/usr/share/qgis/python/plugins/","/usr/share/qgis/python/"],
+        "python.analysis.include": ["/home/olly/miniconda3/envs/condaQGIS/lib/python3.11/site-packages","/usr/lib/python3/dist-packages/","/usr/share/qgis/python/plugins/","/usr/share/qgis/python/"],
+        "python.autoComplete.extraPaths": ["/home/olly/miniconda3/envs/condaQGIS/lib/python3.11/site-packages","/usr/lib/python3/dist-packages/","/usr/share/qgis/python/plugins/","/usr/share/qgis/python/"],
+        "terminal.integrated.env.linux": {
+                "PYTHONPATH": "/home/olly/miniconda3/envs/condaQGIS/lib/python3.11/site-packages:/usr/lib/python3/dist-packages/:/usr/share/qgis/python/plugins/:/usr/share/qgis/python/",
+                "LD_LIBRARY_PATH": "/home/olly/miniconda3/envs/condaQGIS/lib:/usr/lib:/usr/lib/x86_64-linux-gnu/qt5/plugins/designer",
+                },
+        "terminal.integrated.env.windows": {
+                "PYTHONPATH":"C:/PROGRA~1/QGIS33~1.2/apps/qgis/./python;C:/Users/ollyp/AppData/Roaming/QGIS/QGIS3\\profiles\\default/python;C:/Users/ollyp/AppData/Roaming/QGIS/QGIS3\\profiles\\default/python/plugins;C:/PROGRA~1/QGIS33~1.2/apps/qgis/./python/plugins;C:\\PROGRA~1\\QGIS33~1.2\\apps\\grass\\grass84\\etc\\python;C:\\Users\\ollyp\\Documents;C:\\Program Files\\QGIS 3.38.2\\bin\\python312.zip;C:\\PROGRA~1\\QGIS33~1.2\\apps\\Python312\\DLLs;C:\\PROGRA~1\\QGIS33~1.2\\apps\\Python312\\Lib;C:\\Program Files\\QGIS 3.38.2\\bin;C:\\PROGRA~1\\QGIS33~1.2\\apps\\Python312;C:\\PROGRA~1\\QGIS33~1.2\\apps\\Python312\\Lib\\site-packages;C:\\PROGRA~1\\QGIS33~1.2\\apps\\Python312\\Lib\\site-packages\\win32;C:\\PROGRA~1\\QGIS33~1.2\\apps\\Python312\\Lib\\site-packages\\win32\\lib;C:\\PROGRA~1\\QGIS33~1.2\\apps\\Python312\\Lib\\site-packages\\Pythonwin"
+                }
+    },
+}
