@@ -1,0 +1,55 @@
+# Usage: conda env create --file condaQGIS_311_env.yaml
+
+name: condaQGIS_311
+channels:
+  - conda-forge
+  - anaconda
+  - menpo
+  - defaults
+dependencies:
+  - python==3.11  # QGIS currently using 3.12.3 (The system default for my version of Ubuntu)
+  - gdal==3.8.4  
+  - rasterio      
+  - rasterstats   
+  - contextily      
+  - matplotlib    # QGIS uses 3.6.3, which conflicts with Python 3.12.3
+  - numpy==1.26.4
+  - pyproj==3.6.1
+  - qgis  
+  - scipy
+  - ipython
+  - jupyter
+  - joblib
+  - scikit-learn
+  - seaborn
+  - plotly
+  - plotly_express
+  - python-dotenv
+  - polars #conflicts with Python 3.12.3
+  - pandas
+  - geopandas
+  - shapely
+  - cartopy
+  - geoplot
+  - ipyleaflet
+  - folium
+  - pillow
+  - geoviews
+  - opencv
+  - fastparquet
+  - pyarrow
+  - pyyaml
+  - piexif
+  - xmltodict
+  - pip
+  - pip:
+    #- some crazy package only availabl on pip
+      
+# TorchGeo extra packages
+#  - pytorch-lightning=2.0.6
+#  - torchvision=0.16
+#  - timm=0.9.7 
+#  - scikit-image=0.21.0
+#  - seaborn=0.12.2
+#  - albumentations=1.3.1
+#  - python-kaleido=0.2.1
