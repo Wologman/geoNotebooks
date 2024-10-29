@@ -1,10 +1,8 @@
 # Readme
 
-* This repo is for my journey towards mastering Jupyter Notebooks & Conda with the PyQGIS API for geoprocessing & visualisation.
+* This repo is for my journey towards standardising the way I work with Jupyter Notebooks & Conda with the PyQGIS API for geoprocessing & visualisation.
  
 * This is a non-trivial thing.  My approach is a little hacky, and I'm aware that [Quantstack](https://quantstack.net/) may be working on a more elegent solution.
-
-*  I'm mostly interested developing a standardised process applicable to a variety of interesting contexts.  
 
 * I'm mostly working on-site with the New Zealand [Department of Conservation](https://www.doc.govt.nz/) terestrial biodiversity group, but I would be interested to collaborate with others, and apply this to a variety of use-cases.  Eventually I might try producing a training course or something similar.
 
