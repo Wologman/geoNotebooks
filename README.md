@@ -6,7 +6,7 @@
 
 * I'm mostly working on-site with the New Zealand [Department of Conservation](https://www.doc.govt.nz/) terestrial biodiversity group, but I would be interested to collaborate with others, and apply this to a variety of use-cases.  Eventually I might try producing a training course or something similar.
 
-* The main prize here is to to have the efficiency, reproducibility and convenience of Conda for data & ML projects + the geospatial awesomeness of QGIS, plus the logical workflow, flexibility and presentability of a Jupyter notebooks.
+* The main prize here is to to have the efficiency, reproducibility and convenience of Conda for data & ML projects + the geospatial awesomeness of QGIS, plus the logical workflow, flexibility and presentability of Jupyter notebooks.
 
 * Notebooks are my prefered way to begin a data project, but not necessarily the final outcome.  This could be any of a number of things:
   - The notebook its self, with all the code for maximum transparency.
