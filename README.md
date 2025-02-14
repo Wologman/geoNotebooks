@@ -15,4 +15,4 @@
   - Just the derived outputs, like maps and plots for use in reports & publications.
   - With one more step, we can copy the functioning code into `.py` scripts, and package with the dependencies into a QGIS plugin or a custom QGIS application.
  
-  * The main prize here is to to have the efficiency, reproducibility and convenience of Conda for data & ML projects + the geospatial awesomeness of QGIS, plus the logical workflow, flexibility and presentability of Jupyter notebooks.
+ * The main prize here is to to have the efficiency, reproducibility and convenience of Conda for data & ML projects + the geospatial awesomeness of QGIS, plus the logical workflow, flexibility and presentability of Jupyter notebooks.
