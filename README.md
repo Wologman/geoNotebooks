@@ -2,7 +2,7 @@
 
 * This repo is for my journey towards standardising the way I work with Jupyter Notebooks & Conda with the PyQGIS API for geoprocessing & visualisation.
  
-* This is a non-trivial thing.  My approach is a little hacky, and I'm aware that [Quantstack](https://quantstack.net/) may be working on a more elegent Jupyer-QGIS solution.
+* This is a non-trivial thing.  My approach is a little hacky, and I'm aware that [Quantstack](https://quantstack.net/) may be working on a more elegent Jupyter-QGIS solution.
 
 * Once I have perfected some practical examples, I will move all the common classes and methods to a stand-alone module so they don't clutter up the notebooks, and can be used across projects.
 
